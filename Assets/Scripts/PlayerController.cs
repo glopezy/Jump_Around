@@ -32,11 +32,18 @@ public class PlayerController: MonoBehaviour
         inputH =  Input.GetAxisRaw("Horizontal");
         FlipSprite();
 
+        //hold
         if(Input.GetButtonDown("Jump") && !isJumping)
         {
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
             isJumping = true;
             animator.SetBool("Grounded", false);
+        }
+
+        //release
+        if(Input.GetButtonUp("Jump") && rb.linearVelocityY>=0)
+        {
+            rb.linearVelocityY = 0;
         }
     }
 
