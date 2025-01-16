@@ -34,8 +34,9 @@ public class PlayerController: MonoBehaviour
 
         if(Input.GetButtonDown("Jump") && !isJumping)
         {
-            rb.linearVelocityY = jumpPower;
+            rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
             isJumping = true;
+            animator.SetBool("Grounded", false);
         }
     }
 
@@ -43,7 +44,9 @@ public class PlayerController: MonoBehaviour
     {
         rb.linearVelocityX = inputH * velocidadMovimiento;
         animator.SetFloat("Speed", Mathf.Abs(rb.linearVelocityX));
-        animator.SetFloat("Jump", Mathf.Abs(rb.linearVelocityY));
+        animator.SetFloat("Jump", rb.linearVelocityY);
+
+        animator.SetBool("Grounded", !isJumping);
     }
 
     private void FlipSprite()
@@ -59,11 +62,13 @@ public class PlayerController: MonoBehaviour
         }
     }
 
+   
 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         isJumping = false;
+        
 
         /*if (rb.linearVelocityY < 0f) rb.linearVelocityY = 0f;
         var dir = transform.position - collision.transform.position;
