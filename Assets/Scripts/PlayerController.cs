@@ -14,6 +14,11 @@ public class PlayerController: MonoBehaviour
 
     private float time;
 
+    [SerializeField] private Animator animator;
+
+    
+
+
     private bool isFacingRight = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -37,6 +42,8 @@ public class PlayerController: MonoBehaviour
     private void FixedUpdate()
     {
         rb.linearVelocityX = inputH * velocidadMovimiento;
+        animator.SetFloat("Speed", Mathf.Abs(rb.linearVelocityX));
+        animator.SetFloat("Jump", Mathf.Abs(rb.linearVelocityY));
     }
 
     private void FlipSprite()

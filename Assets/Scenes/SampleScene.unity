@@ -1226,6 +1226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocidadMovimiento: 5
   jumpPower: 6
+  animator: {fileID: 884334054}
 --- !u!61 &660573216
 BoxCollider2D:
   m_ObjectHideFlags: 0
