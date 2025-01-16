@@ -8,6 +8,7 @@ public class PlayerController: MonoBehaviour
 
     [SerializeField] private float velocidadMovimiento;
     [SerializeField] private float jumpPower;
+    
 
     private bool isJumping = false;
 
@@ -51,8 +52,15 @@ public class PlayerController: MonoBehaviour
         }
     }
 
+
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         isJumping = false;
+
+        /*if (rb.linearVelocityY < 0f) rb.linearVelocityY = 0f;
+        var dir = transform.position - collision.transform.position;
+        transform.position += dir.normalized;
+        */
     }
 }
