@@ -10,11 +10,13 @@ public class PlayerController: MonoBehaviour
 
     [SerializeField] private float velocidadMovimiento;
     [SerializeField] private float jumpPower;
-    
+
+    [SerializeField] private Transform spawn;
+
 
     private bool isJumping = false;
 
-    private float time;
+    [SerializeField] private float hp;
 
     [SerializeField] private Animator animator;
 
@@ -35,6 +37,11 @@ public class PlayerController: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(hp <= 0)
+        {
+            FindAnyObjectByType<GameManager>().Restart();
+        }
+        
         inputH =  Input.GetAxisRaw("Horizontal");
         FlipSprite();
 

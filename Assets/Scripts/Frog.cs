@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class Beetle : EnemyNameSpace.Enemy
+public class Frog : EnemyNameSpace.Enemy
 {
     protected override void Attack()
     {
-        Debug.Log("Up & Down");
+        Debug.Log("Jump");
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -16,8 +16,6 @@ public class Beetle : EnemyNameSpace.Enemy
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-
-
 }

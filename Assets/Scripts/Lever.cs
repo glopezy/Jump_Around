@@ -1,16 +1,14 @@
 using UnityEngine;
 
-public class Beetle : EnemyNameSpace.Enemy
+
+public class Lever : MonoBehaviour
 {
-    protected override void Attack()
-    {
-        Debug.Log("Up & Down");
-    }
+    [SerializeField] private Mechanism mechanism;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Hp = 1;
+        
     }
 
     // Update is called once per frame
