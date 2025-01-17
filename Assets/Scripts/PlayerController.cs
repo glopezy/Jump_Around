@@ -5,6 +5,7 @@ public class PlayerController: MonoBehaviour
     private Rigidbody2D rb;
 
     private float inputH;
+    public float InputH { get => inputH; }
 
     [SerializeField] private float velocidadMovimiento;
     [SerializeField] private float jumpPower;
@@ -18,8 +19,11 @@ public class PlayerController: MonoBehaviour
 
     
 
-
     private bool isFacingRight = true;
+
+    public bool IsFacingRight { get => isFacingRight; }
+    
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -74,7 +78,17 @@ public class PlayerController: MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        isJumping = false;
+        foreach (ContactPoint2D contact in collision.contacts)
+        {
+            if(contact.normal.y > 0)
+            {
+                isJumping = false;
+                //break;
+            }
+        }
+
+
+        
         
 
         /*if (rb.linearVelocityY < 0f) rb.linearVelocityY = 0f;
