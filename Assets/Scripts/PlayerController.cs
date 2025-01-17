@@ -1,3 +1,4 @@
+using TreeEditor;
 using UnityEngine;
 
 public class PlayerController: MonoBehaviour
@@ -17,7 +18,8 @@ public class PlayerController: MonoBehaviour
 
     [SerializeField] private Animator animator;
 
-    
+    [SerializeField] private float detectRadius;
+    [SerializeField] private LayerMask isInteractable;
 
     private bool isFacingRight = true;
 
@@ -48,6 +50,17 @@ public class PlayerController: MonoBehaviour
         if(Input.GetButtonUp("Jump") && rb.linearVelocityY>=0)
         {
             rb.linearVelocityY = 0;
+        }
+
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            Collider2D collDetected = Physics2D.OverlapCircle(transform.position, detectRadius, isInteractable);
+            if (collDetected != null)
+            {
+                Debug.Log(collDetected.gameObject.name);
+
+            }
+
         }
     }
 

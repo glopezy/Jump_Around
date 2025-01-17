@@ -1,16 +1,27 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+
+namespace EnemyNameSpace
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public abstract class Enemy : MonoBehaviour
     {
+        [SerializeField] private int hp;
+
+        protected int Hp { get => hp; set => hp = value; }
+
+        protected abstract void Attack();
         
+        protected virtual void Chase()
+        {
+            //distance
+            //move
+        }
+
+        protected void TakeDamage(int damage)
+        {
+
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
+
