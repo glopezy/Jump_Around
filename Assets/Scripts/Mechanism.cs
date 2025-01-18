@@ -1,16 +1,25 @@
 using UnityEngine;
+using UnityEngine.Windows;
+
 
 public class Mechanism : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+   
+    [SerializeField] private Transform final_position;
+    [SerializeField] private float speed;
+    [SerializeField] private bool comeback;
+    [SerializeField] private BoxCollider2D collider;
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private bool isdoor;
 
-    // Update is called once per frame
-    void Update()
+    public void Move()
     {
-        
+        collider.enabled = !isdoor;
+        if (isdoor)
+        {
+            rb.linearVelocityY = speed;
+        }
+
+        //transform.position = Vector3.Lerp(transform.position, final_position.position, Time.deltaTime * speed);
     }
 }

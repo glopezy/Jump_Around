@@ -20,6 +20,7 @@ public class PlayerController: MonoBehaviour
 
     [SerializeField] private Animator animator;
 
+    [SerializeField] private Transform detectCenter;
     [SerializeField] private float detectRadius;
     [SerializeField] private LayerMask isInteractable;
 
@@ -61,10 +62,10 @@ public class PlayerController: MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.E))
         {
-            Collider2D collDetected = Physics2D.OverlapCircle(transform.position, detectRadius, isInteractable);
+            Collider2D collDetected = Physics2D.OverlapCircle(detectCenter.position, detectRadius, isInteractable);
             if (collDetected != null)
             {
-                Debug.Log(collDetected.gameObject.name);
+                collDetected.GetComponent<Lever>().Activate();
 
             }
 
