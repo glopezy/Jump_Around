@@ -4,10 +4,12 @@ using UnityEngine;
 public class PlayerController: MonoBehaviour
 {
     private Rigidbody2D rb;
+    private BoxCollider2D bc;
 
     private float inputH;
     public float InputH { get => inputH; }
 
+    [SerializeField] private bool active = true;
     [SerializeField] private float velocidadMovimiento;
     [SerializeField] private float jumpPower;
 
@@ -33,14 +35,19 @@ public class PlayerController: MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        bc = GetComponent<BoxCollider2D>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(hp <= 0)
+       
+
+            if (hp <= 0)
         {
-            FindAnyObjectByType<GameManager>().Restart();
+            Debug.Log("C murio");
+            //FindAnyObjectByType<GameManager>().Restart();
         }
         
         inputH =  Input.GetAxisRaw("Horizontal");
@@ -94,11 +101,12 @@ public class PlayerController: MonoBehaviour
         }
     }
 
-   
 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
+
         foreach (ContactPoint2D contact in collision.contacts)
         {
             if(contact.normal.y > 0)
@@ -116,5 +124,17 @@ public class PlayerController: MonoBehaviour
         var dir = transform.position - collision.transform.position;
         transform.position += dir.normalized;
         */
+    }
+
+    public void Die()
+    {
+        active = false;
+        bc.enabled = false;
+        DieAnim();
+    }
+
+    private void DieAnim()
+    {
+       rb.AddForce(Vector2.up * jumpPower/2, ForceMode2D.Impulse);
     }
 }
