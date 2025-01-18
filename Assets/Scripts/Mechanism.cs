@@ -19,6 +19,10 @@ public class Mechanism : MonoBehaviour
         {
             rb.linearVelocityY = speed;
         }
+        if (!isdoor)
+        {
+            rb.linearVelocityY = speed;
+        }
 
         //transform.position = Vector3.Lerp(transform.position, final_position.position, Time.deltaTime * speed);
     }
