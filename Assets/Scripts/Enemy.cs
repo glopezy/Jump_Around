@@ -4,9 +4,11 @@ using UnityEngine;
 namespace EnemyNameSpace
 {
     [RequireComponent(typeof(CapsuleCollider2D))]
+
     public abstract class Enemy : MonoBehaviour
     {
         [SerializeField] private int hp;
+        [SerializeField] private GameManager gameManager;
 
         protected int Hp { get => hp; set => hp = value; }
 
@@ -30,9 +32,11 @@ namespace EnemyNameSpace
 
         protected void OnTriggerEnter2D(Collider2D collision)
         {
-            if(collision.tag == "Player")
+            if(collision.gameObject.name == "Player")
             {
-                Debug.Log("kill");
+                //falta comprobar que la colision sea el player mediante layers o tags
+                Debug.Log("Muelto");
+                gameManager.Restart();
             }
         }
     }

@@ -203,6 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 1
+  gameManager: {fileID: 660573218}
 --- !u!1 &70654283
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,6 +406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 1
+  gameManager: {fileID: 660573218}
 --- !u!1 &166434316
 GameObject:
   m_ObjectHideFlags: 0
