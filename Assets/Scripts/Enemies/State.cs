@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public abstract class State : MonoBehaviour
+public abstract class State<T> : MonoBehaviour
 {
-    protected EnemyController controller;
-    public virtual void onEnterState(EnemyController controller)
+    protected T controller;
+    public virtual void onEnterState(T controller)
     {
         this.controller = controller;
     }

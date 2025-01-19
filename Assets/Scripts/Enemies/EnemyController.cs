@@ -5,7 +5,12 @@ public class EnemyController : MonoBehaviour
     private IdleState idleState;
     private ChaseState chaseState;
 
-    private State current;
+    private State<EnemyController> current;
+
+    public IdleState IdleState { get => idleState; }
+    public ChaseState ChaseState { get => chaseState; }
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,7 +29,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    public void ChangeState(State newState)
+    public void ChangeState(State<EnemyController> newState)
     {
         if (current != null)
         {

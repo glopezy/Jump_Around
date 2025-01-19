@@ -1,26 +1,22 @@
 using UnityEngine;
 
-public class ChaseState : State
+public class ChaseState : State<EnemyController>
 {
-    public override void onExitState()
+    public override void onEnterState(EnemyController controller)
     {
-        throw new System.NotImplementedException();
+        base.onEnterState(controller);
     }
+
 
     public override void onUpdateState()
     {
-        throw new System.NotImplementedException();
+
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override void onExitState()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
