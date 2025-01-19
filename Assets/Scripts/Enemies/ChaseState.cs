@@ -43,7 +43,7 @@ public class ChaseState : State<EnemyController>
     {
         if (collision.TryGetComponent(out PlayerController player))
         {
-            controller.ChangeState(controller.ChaseState);
+            controller.ChangeState(controller.IdleState);
         }
     }
 

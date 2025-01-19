@@ -30,9 +30,11 @@ namespace EnemyNameSpace
             GetComponent<CapsuleCollider2D>().isTrigger = true;
         }
 
-        protected void OnTriggerEnter2D(Collider2D collision)
+       
+
+        protected void OnCollisionEnter2D(Collision2D collision)
         {
-            if(collision.gameObject.name == "Player")
+            if (collision.gameObject.name == "Player")
             {
                 //falta comprobar que la colision sea el player mediante layers o tags
                 Debug.Log("Muelto");
