@@ -116,7 +116,10 @@ public class PlayerController: MonoBehaviour
             }
         }
 
-
+        if (collision == null)
+        {
+            isJumping = true;
+        }
         
         
 
