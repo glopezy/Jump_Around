@@ -48,10 +48,19 @@ public class IdleState: State<EnemyController>
 
     public override void onExitState()
     {
-        
+        pointList.Clear();
+        currentDestinationIndex = 0;
     }
 
-    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.TryGetComponent(out PlayerController player))
+        {
+            controller.ChangeState(controller.ChaseState);
+        }
+    }
+
+
 
 
 }
