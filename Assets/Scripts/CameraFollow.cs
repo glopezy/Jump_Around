@@ -4,15 +4,28 @@ using UnityEngine.Windows;
 public class CameraFollow : MonoBehaviour
 {
     [SerializeField] private Transform target;
-    [SerializeField] private Vector3 offset = new Vector3(7.44f,1.28f,-10f);
+    [SerializeField] private Vector3 offset ;
+    [SerializeField] private Vector3 crouchOffset;
+    [SerializeField] private bool isCrouching;
     [SerializeField] [Range(1,10)] private float smoothFactor;
     [SerializeField] private Vector3 minValue, maxValue;
+
+    public bool IsCrouching { get => isCrouching; set => isCrouching = value; }
+
+
 
     // Update is called once per frame
     private void FixedUpdate()
     {
-
-        Follow();
+        if (!isCrouching)
+        {
+            Follow();
+        }
+        else
+        {
+            Crouchfollow();
+        }
+        
        
     }
 
@@ -29,4 +42,16 @@ public class CameraFollow : MonoBehaviour
 
         
     }
+
+    private void Crouchfollow()
+    {
+        Vector3 targetPosition = target.position + crouchOffset;
+
+        Vector3 boundPosition = new Vector3(Mathf.Clamp(targetPosition.x, minValue.x, maxValue.x), Mathf.Clamp(targetPosition.y, minValue.y, maxValue.y), targetPosition.z);
+
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, boundPosition, smoothFactor * Time.fixedDeltaTime);
+        transform.position = smoothedPosition;
+    }
+
+    
 }

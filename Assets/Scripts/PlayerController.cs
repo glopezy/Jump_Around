@@ -26,6 +26,8 @@ public class PlayerController: MonoBehaviour
     [SerializeField] private float detectRadius;
     [SerializeField] private LayerMask isInteractable;
 
+    [SerializeField] private CameraFollow camera;
+
     private bool isFacingRight = true;
 
     public bool IsFacingRight { get => isFacingRight; }
@@ -62,12 +64,23 @@ public class PlayerController: MonoBehaviour
         }
 
         //release
-        if(Input.GetButtonUp("Jump") && rb.linearVelocityY>=0)
+        if (Input.GetButtonUp("Jump") && rb.linearVelocityY >= 0)
         {
             rb.linearVelocityY = 0;
         }
 
-        if(Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.S) )
+        {
+            camera.IsCrouching = true;
+        }
+
+        if (Input.GetKeyUp(KeyCode.S))
+        {
+            camera.IsCrouching = false;
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.E))
         {
             Collider2D collDetected = Physics2D.OverlapCircle(detectCenter.position, detectRadius, isInteractable);
             if (collDetected != null)
