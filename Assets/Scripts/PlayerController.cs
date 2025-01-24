@@ -9,7 +9,7 @@ public class PlayerController: MonoBehaviour
     private float inputH;
     public float InputH { get => inputH; }
 
-    [SerializeField] private bool active = true;
+    [SerializeField] private bool crouching;
     [SerializeField] private float velocidadMovimiento;
     [SerializeField] private float jumpPower;
 
@@ -69,14 +69,18 @@ public class PlayerController: MonoBehaviour
             rb.linearVelocityY = 0;
         }
 
-        if (Input.GetKeyDown(KeyCode.S) )
+        if (Input.GetKeyDown(KeyCode.S) && !isJumping)
         {
+            crouching = true;
             camera.IsCrouching = true;
+            animator.SetBool("Crouching", true);
         }
 
         if (Input.GetKeyUp(KeyCode.S))
         {
+            crouching = false;
             camera.IsCrouching = false;
+            animator.SetBool("Crouching", false);
         }
 
 
@@ -94,11 +98,16 @@ public class PlayerController: MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.linearVelocityX = inputH * velocidadMovimiento;
-        animator.SetFloat("Speed", Mathf.Abs(rb.linearVelocityX));
-        animator.SetFloat("Jump", rb.linearVelocityY);
+        if (!crouching)
+        {
+            rb.linearVelocityX = inputH * velocidadMovimiento;
+            animator.SetFloat("Speed", Mathf.Abs(rb.linearVelocityX));
+            animator.SetFloat("Jump", rb.linearVelocityY);
 
-        animator.SetBool("Grounded", !isJumping);
+            animator.SetBool("Grounded", !isJumping);
+        }
+
+        
     }
 
     private void FlipSprite()
@@ -144,7 +153,7 @@ public class PlayerController: MonoBehaviour
 
     public void Die()
     {
-        active = false;
+        
         bc.enabled = false;
         DieAnim();
     }
